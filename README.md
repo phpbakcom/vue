@@ -1,5 +1,5 @@
 # vueexample
-        <div>{{envstring}}</div>
+#       <div>{{envstring}}</div>
         <router-link to="/a">转向A页面</router-link><br/>
         1.VUEX使用的例子：<router-link to="/vuex1">点击进入</router-link><br/>
         2.简单路由的例子：<router-link to="/b">转向B页面</router-link><br/>
