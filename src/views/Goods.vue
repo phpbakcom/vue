@@ -9,12 +9,12 @@
             <input type="checkbox" v-model="checkboxlist" :value="data" @change="mmchange" /> ---
             {{data}}--
             {{data.name}}--
-            <button>-</button>{{data.num}}<button>+</button>
+            <button @click="bt1(data)">-</button>{{data.num}}<button @click="bt2(data)">+</button>
         </li>
         <br/>
         {{checkboxlist}}
         <br/>
-        合计：{{totalnums}}
+        合计：{{total()}}
         <br/>
         <br/>
     </div>
@@ -43,7 +43,6 @@ export default{
                     price:5
                 }
             ],
-
         }
     },
     methods:{
@@ -59,6 +58,25 @@ export default{
                 this.ischecked=false
             }
             console.log(this.ischecked)
+        },
+        bt1(data){
+            data.num=data.num-1
+            let lnum =data.num
+            if( lnum < 1){
+                data.num=1
+            }
+            console.log(lnum)
+        },
+        bt2(data){
+            //data.num++
+            data.num=data.num+1
+        },
+        total(){
+            let inums=0
+            for(let i in this.checkboxlist){
+                inums+=this.checkboxlist[i].num * this.checkboxlist[i].price
+            }
+            return inums
         }
     }
 }
