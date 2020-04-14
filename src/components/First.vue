@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>{{envstring}}</div>
+        <hr/>
         0.基础知识--AXIOS使用的例子:<router-link to="/a">转向A页面</router-link><br/>
         1.基础知识--VUEX使用的例子：<router-link to="/vuex1">点击进入</router-link><br/>
         2.基础知识--简单路由的例子：<router-link to="/b">转向B页面</router-link><br/>
@@ -57,7 +58,6 @@
         <br/>
         表单绑定修饰符1,lazy懒同步，不时时同步，节省资源，焦点失去同步<br/>
         <input type="text" v-model.lazy="mytext"/> {{mytext}} <br/><br/>
-
         表单绑定修饰符2，number限定数字，鸡肋 <br/>
         <input type="text" v-model.number="mynumber"/> {{mynumber}} <br/>
         不如使用以下：<br/>
@@ -65,6 +65,42 @@
         单绑定修饰符3，trim 去左右空格 <br/>
         <input type="text" v-model.trim="mytext"/> |{{mytext}}| <br/><br/>
 
+        事件处理试例----三种写法一样的效果<br/>
+        <button @click="onClickTo">点击显示与隐藏</button> |
+        <button @click="onClickTo()">点击显示与隐藏</button> |
+        <button @click="isShow=!isShow">点击显示与隐藏</button><br/>
+        <div v-show="isShow">这里显示或者隐藏，请看这里</div>
+        <br/><br/>
+        事件修饰符 stop ----子事件触发，父事件也触发。冒泡事件,stop阻止冒泡事件<br/>
+        <ul @click="ulClick">
+            <li @click="liClick">ssssssssssssssss弹li click</li>
+            <li>bbbbbbbbbbbbbbbbb弹UL click</li>
+            <li @click="liClick2($event)">aaaaaaaaaaaaaa弹li2 click</li>
+            <li @click="liClick3()">aaaaaaaaaaaaaa弹ul click 与 li3 click</li>
+            <li @click.stop="liClick3()">aaaaaaaaaaaaaa弹li3 click</li>
+        </ul>
+        <br/><br/>
+        事件修饰符 prevent ----阻止默认事件<br/>
+        <a href="http://www.baidu.com" @click.prevent="liClick3()">baidu.com</a>
+        <br/>
+        <br/>
+        事件修饰符 self ----只执行自己默认事件<br/>
+        <ul @click.self="ulClick">
+            <li @click="liClick3()">UL上有事件，无法冒泡aaaaaaaaaaaaaa弹 li3 click</li>
+        </ul>
+        <br/>
+        <br/>
+        事件修饰符 once ----只执行一次事件<br/>
+        <ul>
+        <li @click.once="liClick3()">只弹一次 li3 click ，再点击无效</li>
+        </ul>
+        <br/>
+        <br/>
+        按键修饰符 @keyup.enter  @keyup.13<br/>
+        <input @keyup="ku"  />随时提交<br/>
+        <input @keyup.13="ku"  />回车提交<br/>
+        <input @keyup.enter="ku"  />回车提交<br/>
+        <br/>
         <hr/>
     </div>
 
@@ -85,6 +121,7 @@ console.log(process.env)
         },
         data:function(){
             return {
+                isShow:true,
                 mynumber:0,
                 mytext:'',
                 checkgroup:[],
@@ -107,6 +144,27 @@ console.log(process.env)
             },
             hdelete:function(index){
                 this.list.splice(index)
+            },
+            onClickTo(){
+                this.isShow = !this.isShow
+            },
+            ulClick(){
+                alert('ul click ')
+            },
+            liClick(ev){
+                ev.stopPropagation() //加这句可以阻止冒泡行为
+                alert('li click ')
+            },
+            liClick2(ev){
+                ev.stopPropagation() //加这句可以阻止冒泡行为
+                alert('li2 click')
+            },liClick3(){
+                alert('li3 click')
+            },ku(ev){
+                console.log(ev)
+                if(ev.keyCode===13){
+                    console.log('你按的enter键')
+                }
             }
         }
     }
