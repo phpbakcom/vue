@@ -83,6 +83,9 @@ const routes = [
     ,{
         path:'/refs',
         component:()=>import('../components/Base/Vuerefs.vue')
+    }   ,{
+        path:'/emiton',
+        component:()=>import('../components/Base/EmitOn.vue')
     }
 ]
 

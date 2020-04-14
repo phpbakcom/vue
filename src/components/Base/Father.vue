@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-    import children from './Children.vue'
+    import children from './FatherChildren.vue'
     export default{
         name:'father',
         components:{
