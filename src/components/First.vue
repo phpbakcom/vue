@@ -33,6 +33,39 @@
             v-bind:index="index" 
             @delete_one="hdelete"></todoitem>
         </ul>
+        <hr/>
+        表单绑定。表单修饰符<br/><br/>
+        input(绑定字符串) : <br/>
+        <input type="text" v-model="inputValue"/> {{inputValue}} <br/><br/>
+        textarea (绑定字符串) : <br/>
+        <textarea v-model="inputValue"></textarea>{{inputValue}} <br/><br/>
+        单个checkbox (绑定BOOL): <br/>
+        <input type="checkbox" v-model="ischeckbox"/>记住用户名 <br/>{{ischeckbox}}<br/><br/>
+        <br/>
+        多选（绑定数组）：<br/>
+        <input type="checkbox" v-model="checkgroup" value="php" /> php<br/>
+        <input type="checkbox" v-model="checkgroup" value="jsp" /> jsp<br/>
+        <input type="checkbox" v-model="checkgroup" value="asp" /> asp<br/>
+        {{checkgroup}}<br/>
+        <br/>
+
+        单选(绑定字符串)：<br/>
+        <input type="radio" v-model="radios" value="php" /> php<br/>
+        <input type="radio" v-model="radios" value="jsp" /> jsp<br/>
+        <input type="radio" v-model="radios" value="asp" /> asp<br/>
+        {{radios}}<br/>
+        <br/>
+        表单绑定修饰符1,lazy懒同步，不时时同步，节省资源，焦点失去同步<br/>
+        <input type="text" v-model.lazy="mytext"/> {{mytext}} <br/><br/>
+
+        表单绑定修饰符2，number限定数字，鸡肋 <br/>
+        <input type="text" v-model.number="mynumber"/> {{mynumber}} <br/>
+        不如使用以下：<br/>
+        <input type="number" v-model="mynumber"/> {{mynumber}} <br/><br/>
+        单绑定修饰符3，trim 去左右空格 <br/>
+        <input type="text" v-model.trim="mytext"/> |{{mytext}}| <br/><br/>
+
+        <hr/>
     </div>
 
 </template>
@@ -52,7 +85,12 @@ console.log(process.env)
         },
         data:function(){
             return {
-                inputValue:'',
+                mynumber:0,
+                mytext:'',
+                checkgroup:[],
+                radios:'',
+                ischeckbox:false,
+                inputValue:'表单中的值',
                 list:[],
                 envstring:'当前运行的环境是:'+process.env.VUE_APP_TITLE
             }
