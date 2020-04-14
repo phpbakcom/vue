@@ -13,6 +13,7 @@
         8.基础知识--父传子 子传父 refs : <router-link to="/refs">点击进入</router-link><br/>
         9.基础知识--组件非父子通信，事件总线bus = new Vue()/ $emit / $on :  效果等于VUEX<router-link to="/emiton">点击进入</router-link><br/>
         10.基础知识--动态组件component keep-live<router-link to="/a">点击进入</router-link><br/>
+        11.基础知识--slot<router-link to="/slot1">点击进入</router-link><br/>
         <hr/>
         1.综合实例--用户管理的例子:<router-link to="/user1">点击进入</router-link><br/>
         2.综合实例--操作接口的用户管理的例子(vue-resource):<router-link to="/user2">点击进入</router-link><br/>

@@ -86,6 +86,20 @@ const routes = [
     }   ,{
         path:'/emiton',
         component:()=>import('../components/Base/EmitOn.vue')
+    } ,{
+        path:'/slot1',
+        component:()=>import('../components/Base/Slot1.vue')
+    },{
+        path:'/slotchild',
+        component:()=>import('../components/Base/SlotChild.vue')
+    }
+    ,{
+        path:'/slotchild1',
+        component:()=>import('../components/Base/SlotChild1.vue')
+    }
+    ,{
+        path:'/slotchild2',
+        component:()=>import('../components/Base/SlotChild1.vue')
     }
 ]
 
