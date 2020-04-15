@@ -14,16 +14,17 @@
         8.基础知识--父传子 子传父 refs : <router-link to="/refs">点击进入</router-link><br/>
         9.基础知识--组件非父子通信，事件总线bus = new Vue()/ $emit / $on :  效果等于VUEX<router-link to="/emiton">点击进入</router-link><br/>
         10.基础知识--动态组件component keep-live<router-link to="/a">点击进入</router-link><br/>
-        11.基础知识--slot<router-link to="/slot1">点击进入</router-link><br/>
+        11.基础知识--slot插造<router-link to="/slot1">点击进入</router-link><br/>
         <hr/>
         1.综合实例--用户管理的例子:<router-link to="/user1">点击进入</router-link><br/>
         2.综合实例--操作接口的用户管理的例子(vue-resource):<router-link to="/user2">点击进入</router-link><br/>
         3.综合实例--图的显示 加轮播:<router-link to="/lunbo">点击进入</router-link><br/>
         4.综合实例--列表分页:<router-link to="/datalist">点击进入</router-link><br/>
-        5.综合实例--简易购物车:<router-link to="/goods">点击进入</router-link>
+        5.综合实例--简易购物车:<router-link to="/goods">点击进入</router-link><br/>
+        6.综合实例--个人博客：<router-link to="/blog">点击进入</router-link><br/>
         <hr/>
         <div>
-            <input v-model="inputValue" />
+            v-for使用，将表单中的内容提交到子组件中显示：<input v-model="inputValue" />
             <button @click="hc">提交</button>
         </div>
         <ul>
@@ -35,7 +36,7 @@
             @delete_one="hdelete"></todoitem>
         </ul>
         <hr/>
-        表单绑定。表单修饰符<br/><br/>
+        表单绑定/表单修饰符<br/><br/>
         input(绑定字符串) : <br/>
         <input type="text" v-model="inputValue"/> {{inputValue}} <br/><br/>
         textarea (绑定字符串) : <br/>
@@ -80,26 +81,26 @@
             <li @click.stop="liClick3()">aaaaaaaaaaaaaa弹li3 click</li>
         </ul>
         <br/><br/>
-        事件修饰符 prevent ----阻止默认事件<br/>
+        事件修饰符 prevent ----阻止默认事件,激活自定义事件<br/>
         <a href="http://www.baidu.com" @click.prevent="liClick3()">baidu.com</a>
         <br/>
         <br/>
-        事件修饰符 self ----只执行自己默认事件<br/>
+        事件修饰符 self ----只执行自己默认事件，冒泡事件无效<br/>
         <ul @click.self="ulClick">
             <li @click="liClick3()">UL上有事件，无法冒泡aaaaaaaaaaaaaa弹 li3 click</li>
         </ul>
         <br/>
         <br/>
-        事件修饰符 once ----只执行一次事件<br/>
+        事件修饰符 once ----只执行一次事件，以后就不执行了，除非刷新页面，可以再执行一次<br/>
         <ul>
         <li @click.once="liClick3()">只弹一次 li3 click ，再点击无效</li>
         </ul>
         <br/>
         <br/>
         按键修饰符 @keyup.enter  @keyup.13<br/>
-        <input @keyup="ku"  />随时提交<br/>
-        <input @keyup.13="ku"  />回车提交<br/>
-        <input @keyup.enter="ku"  />回车提交<br/>
+        <input @keyup="ku"  />随时提交 ，请打开控制台<br/>
+        <input @keyup.13="ku"  />回车提交 ，请打开控制台<br/>
+        <input @keyup.enter="ku"  />回车提交 ，请打开控制台<br/>
         <br/>
         <hr/>
     </div>
@@ -112,6 +113,7 @@
     }
 </style>
 <script type="text/javascript">
+    import Axios from 'axios'
 import TodoItem from './TodoItem.vue'
 const vueapp = process.env.VUE_APP_TITLE
 console.log(process.env)
@@ -129,11 +131,15 @@ console.log(process.env)
                 ischeckbox:false,
                 inputValue:'表单中的值',
                 list:[],
-                envstring:'当前运行的环境是:'+process.env.VUE_APP_TITLE
+                envstring:'当前运行的环境是:'+process.env.VUE_APP_TITLE,
+                dataslist:''
             }
         },
         created(){
             console.log(process.env.VUE_APP_TITLE)
+            Axios.get('/phpbak/api.php?m=news&type=1').then((res)=>{
+                console.log(res);
+            })
         },
         methods:{
             hc:function(){

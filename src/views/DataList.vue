@@ -1,6 +1,8 @@
 <template>
     <div>
-        <li v-for="(data,index) in datalist" :key="index">{{data.name}}--{{data.url}}</li>
+        <li v-for="(data2,index1) in datalist" :key="'data'+index1">
+            {{data2.name}}--{{data2.url}}
+        </li>
         <br/><br/>
      当前第{{page}}页 / 总共{{totalpage}}页 <span @click="get1">首页</span>&nbsp;&nbsp;
         <span @click="get2">上一页</span>&nbsp;&nbsp;
@@ -14,7 +16,7 @@
 <script>
     import Axios from 'axios'
     export default {
-        name:'datalist',
+        name:'datalist2',
         data(){
             return {
                 dataname:'数据列表',
@@ -29,10 +31,11 @@
         },
         methods:{
             getlists(){
-                Axios.get('http://localhost/gateway/app/api.php?m=getLists&page='+this.page+'&pagesize='+this.pagesize).then((res)=>{
+                let _this =this
+                Axios.get('/apis/gateway/p_devops/app/api.php?m=getLists&page='+_this.page+'&pagesize='+_this.pagesize).then((res)=>{
                     console.log(res);
-                    this.datalist = res.data.data
-                    this.totalpage = res.data.rows
+                    _this.datalist = res.data.data
+                    _this.totalpage = res.data.rows
                 })
             },
             get1(){

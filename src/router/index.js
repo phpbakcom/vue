@@ -100,6 +100,9 @@ const routes = [
     ,{
         path:'/slotchild2',
         component:()=>import('../components/Base/SlotChild1.vue')
+    },{
+        path:'/blog',
+        component:()=>import('../components/Blog/ShowBlogs.vue')
     }
 ]
 
