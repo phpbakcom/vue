@@ -17,6 +17,9 @@
         11.基础知识--slot插造<router-link to="/slot1">点击进入</router-link><br/>
         12.基础知识--配置反向代理，请看vue.config.js<br/>
         13.基础知识--过滤器<router-link to="/">点击进入</router-link><br/>
+        14.基础知识--自定义指令directives 可操作DOM<router-link to="/">点击进入</router-link><br/>
+        15.基础知识--单个元素过渡transition，多个元素过渡transition，多个组件过渡transition，列表过渡transition-group<router-link to="/">点击进入</router-link><br/>
+        16.基础知识--列表过滤(模糊查询) input事件（只要value值改变） 使用计算属性<router-link to="/msearch">点击进入</router-link><br/>
         <hr/>
         1.综合实例--用户管理的例子:<router-link to="/user1">点击进入</router-link><br/>
         2.综合实例--操作接口的用户管理的例子(vue-resource):<router-link to="/user2">点击进入</router-link><br/>
@@ -110,6 +113,12 @@
         过滤写法：<input type="text" :value="vuefilterDatas | thisFilterName" /><br/>
         <br/>
         <br/>
+        自定义指令directives 可操作DOM<br/>
+        <div v-hello>11111111111</div>
+        <div v-hello2="'red'">11111111111</div>
+        <div v-hello2="'yellow'">11111111111</div>
+        <br/>
+        <br/>
         <hr/>
     </div>
 
@@ -123,11 +132,31 @@
 <script type="text/javascript">
     import Axios from 'axios'
     import Vue from 'vue'
-import TodoItem from './TodoItem.vue'
-const vueapp = process.env.VUE_APP_TITLE
+    import TodoItem from './TodoItem.vue'
+    const vueapp = process.env.VUE_APP_TITLE
     Vue.filter('thisFilterName',function(data){
         return data.replace('zj','filter zhjun')
+    })//定义过滤器
+    Vue.directive('hello',{
+        inserted(el){
+        //指令的生命周期
+            console.log('v-hello调用')
+            console.log(el) //可以取到DOM
+            el.style.background = 'red'
+        },
     })
+    Vue.directive('hello2',{
+        inserted(el,bind){
+            //指令的生命周期
+            console.log('v-hello调用')
+            console.log(el) //可以取到DOM
+            el.style.background = bind.value
+        },
+        update(el,bind){
+            el.style.background = bind.value
+        }
+    })
+    //自定义指令directives
 console.log(process.env)
     export default{
         components:{
