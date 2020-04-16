@@ -1,7 +1,10 @@
 <template>
     <div>
       b页面<router-link to="/">返回</router-link>
-        {{msg}}
+        <br/>
+        this.$base的使用：<br/>
+        {{msg}}<br/>
+        <br/>
         <hr/>
         <li v-for="(data,index) in list" @click="hclick(index)">{{data}}</li>
         <hr/>

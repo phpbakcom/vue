@@ -4,8 +4,8 @@
         <hr/>
         0.基础知识--AXIOS使用的例子:<router-link to="/a">转向A页面</router-link><br/>
         1.基础知识--VUEX使用的例子：<router-link to="/vuex1">点击进入</router-link><br/>
-        2.基础知识--简单路由的例子：<router-link to="/b">转向B页面</router-link><br/>
-        3.基础知识--AXIOS使用的例子:<router-link to="/axios2">转向axios2页面</router-link><br/>
+        2.基础知识--简单路由的例子 this.$base的使用：<router-link to="/b">转向B页面</router-link><br/>
+        3.基础知识--AXIOS使用的例子 $route.params.sid:<router-link to="/axios2/3456">转向axios2页面</router-link><br/>
         4.基础知识--子路由的例子 VUE插值v-html v-text v-if v-show  条件渲染v-else v-else-if :<router-link to="/c">c页面在当前页显示</router-link><br/>
         5.基础知识--子路由的例子 列表key值设置，列表数组检测 列表常渲染 v-for="(data,index) in datas" /  v-for="(data,index) of datas" :<router-link to="/d">d面面在当前页显示</router-link><br/>
         <router-view></router-view>
@@ -15,6 +15,8 @@
         9.基础知识--组件非父子通信，事件总线bus = new Vue()/ $emit / $on :  效果等于VUEX<router-link to="/emiton">点击进入</router-link><br/>
         10.基础知识--动态组件component keep-live<router-link to="/a">点击进入</router-link><br/>
         11.基础知识--slot插造<router-link to="/slot1">点击进入</router-link><br/>
+        12.基础知识--配置反向代理，请看vue.config.js<br/>
+        13.基础知识--过滤器<router-link to="/">点击进入</router-link><br/>
         <hr/>
         1.综合实例--用户管理的例子:<router-link to="/user1">点击进入</router-link><br/>
         2.综合实例--操作接口的用户管理的例子(vue-resource):<router-link to="/user2">点击进入</router-link><br/>
@@ -102,6 +104,12 @@
         <input @keyup.13="ku"  />回车提交 ，请打开控制台<br/>
         <input @keyup.enter="ku"  />回车提交 ，请打开控制台<br/>
         <br/>
+        <br/>
+        过滤器filter-----将字符串的中zj换成zhjun<br/>
+        原始写法：<input type="text" :value="fl(vuefilterDatas)" /><br/>
+        过滤写法：<input type="text" :value="vuefilterDatas | thisFilterName" /><br/>
+        <br/>
+        <br/>
         <hr/>
     </div>
 
@@ -114,8 +122,12 @@
 </style>
 <script type="text/javascript">
     import Axios from 'axios'
+    import Vue from 'vue'
 import TodoItem from './TodoItem.vue'
 const vueapp = process.env.VUE_APP_TITLE
+    Vue.filter('thisFilterName',function(data){
+        return data.replace('zj','filter zhjun')
+    })
 console.log(process.env)
     export default{
         components:{
@@ -123,6 +135,7 @@ console.log(process.env)
         },
         data:function(){
             return {
+                vuefilterDatas:'this is zj vue!',
                 isShow:true,
                 mynumber:0,
                 mytext:'',
@@ -171,6 +184,8 @@ console.log(process.env)
                 if(ev.keyCode===13){
                     console.log('你按的enter键')
                 }
+            },fl(str){
+                return str.replace('zj','zhjun')
             }
         }
     }

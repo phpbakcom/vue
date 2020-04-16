@@ -1,6 +1,9 @@
 <template>
     <div>Axios2
-{{$route.params.sid}}
+        <br/>
+        $route.params.sid 获取URL上传过来的参数 <br/>
+        {{$route.params.sid}}
+        请查看代码
     </div>
 </template>
 <script>
