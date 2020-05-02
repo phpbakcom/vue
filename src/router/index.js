@@ -106,6 +106,9 @@ const routes = [
     },{
         path:'/msearch',
         component:()=>import('../components/Base/Msearch.vue')
+    },{
+        path:'/pages',
+        component:()=>import('../components/Pages/Pages.vue')
     }
 ]
 

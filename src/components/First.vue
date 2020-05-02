@@ -24,9 +24,10 @@
         1.综合实例--用户管理的例子:<router-link to="/user1">点击进入</router-link><br/>
         2.综合实例--操作接口的用户管理的例子(vue-resource):<router-link to="/user2">点击进入</router-link><br/>
         3.综合实例--图的显示 加轮播:<router-link to="/lunbo">点击进入</router-link><br/>
-        4.综合实例--列表分页:<router-link to="/datalist">点击进入</router-link><br/>
+        4.综合实例--简易列表分页:<router-link to="/datalist">点击进入</router-link><br/>
         5.综合实例--简易购物车:<router-link to="/goods">点击进入</router-link><br/>
         6.综合实例--个人博客：<router-link to="/blog">点击进入</router-link><br/>
+        7.综合实列--数字分页：<router-link to="/pages">点击进入</router-link><br/>
         <hr/>
         <div>
             v-for使用，将表单中的内容提交到子组件中显示：<input v-model="inputValue" />

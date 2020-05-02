@@ -2,7 +2,7 @@
     <div>
         refs子组件<br/>
         <hr/>
-        {{showParentData}}
+       显示父组中的值： {{showParentData}}
         <hr/>
     </div>
 
